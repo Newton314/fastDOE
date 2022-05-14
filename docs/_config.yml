@@ -1,9 +1,9 @@
-repository: {Newton314}/{fastDOE}
+repository: Newton314/fastDOE
 output: web
-topnav_title: {fastDOE}
-site_title: {fastDOE}
-company_name: {Lennart Koehler}
-description: {Design of experiments in Python}
+topnav_title: fastDOE
+site_title: fastDOE
+company_name: Lennart Koehler
+description: Design of experiments in Python
 # Set to false to disable KaTeX math
 use_math: true
 # Add Google analytics id if you have one and want to use it here
