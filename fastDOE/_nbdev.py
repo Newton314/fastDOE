@@ -6,8 +6,8 @@ index = {"say_hello": "00_core.ipynb"}
 
 modules = ["core.py"]
 
-doc_url = "https://{Newton314}.github.io/fastDOE/"
+doc_url = "https://Newton314.github.io/fastDOE/"
 
-git_url = "https://github.com/{Newton314}/fastDOE/tree/{master}/"
+git_url = "https://github.com/Newton314/fastDOE/tree/master/"
 
 def custom_doc_links(name): return None
