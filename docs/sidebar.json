@@ -1,6 +1,8 @@
 {
   "fastDOE": {
     "Overview": "/",
-    "pythonDOE": "core.html"
+    "fastDOE": "core.html",
+    "Random Design": "randomdesign.html",
+    "FullFactorial": "fullfactorial.html"
   }
 }
