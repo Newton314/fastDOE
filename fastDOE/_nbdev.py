@@ -3,6 +3,7 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"random_design": "01_randomdesign.ipynb",
+         "fullfactorial": "02_fullfactorial.ipynb",
          "fullfactorial2k": "02_fullfactorial.ipynb"}
 
 modules = ["randomdesign.py",
