@@ -2,11 +2,13 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"random_design": "01_randomdesign.ipynb",
+index = {"ExperimentalDesign": "00_core.ipynb",
+         "random_design": "01_randomdesign.ipynb",
          "fullfactorial": "02_fullfactorial.ipynb",
          "fullfactorial2k": "02_fullfactorial.ipynb"}
 
-modules = ["randomdesign.py",
+modules = ["core.py",
+           "randomdesign.py",
            "fullfactorial.py"]
 
 doc_url = "https://Newton314.github.io/fastDOE/"
