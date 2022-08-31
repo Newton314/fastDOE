@@ -7,12 +7,55 @@ __all__ = ['ExperimentalDesign']
 import numpy as np
 import pandas as pd
 
+from fastcore.basics import patch
+
 # %% ../00_core.ipynb 5
 class ExperimentalDesign():
-    def __init__(self, design: pd.DataFrame, factors: list, level_values: list):
+    """Class to hold and manage the Experimental Design matrix"""
+    def __init__(
+        self,
+        design: pd.DataFrame, # base design matrix
+        factors: list, # list of experimental factors
+        center_vals: list, # list of center values for each factors
+        delta_vals: list # list of delta values for each factor
+    ):
         self.design: pd.DataFrame = design
-        self.matrix: np.ndarray = design.query("rep==0")[factors].values
-        self.lvl_values: list = level_values
+        self.factors: list = factors
+        self.model_matrix: np.ndarray = design.query("rep==0")[factors].values
+        self.experimental_matrix = None
+        
+        if center_vals and delta_vals:
+            self.centers = dict(zip(factors, center_vals))
+            self.deltas = dict(zip(factors, delta_vals))
+            self.experimental_matrix = self.create_experimental_matrix()
     
     def __repr__(self):
-        return f"{self.design}"
+        if self.experimental_matrix is not None:
+            return f"{self.experimental_matrix}"
+        else:
+            return f"{self.design}"
+    
+    def __str__(self):
+        return self.__repr__()
+    
+    def create_experimental_matrix(self) -> pd.DataFrame:
+        """Applies level values to the model matrix"""
+        experiment_design = self.design.copy()
+        for factor in self.factors:
+            experiment_design = experiment_design.assign(
+                **{factor: self.design[factor] * self.deltas[factor] + self.centers[factor]}
+            )
+        return experiment_design
+
+# %% ../00_core.ipynb 8
+@patch
+def calc_orthogonality(self: ExperimentalDesign) -> int:
+    """Calculate the orthogonality of the model matrix"""
+    return self.model_matrix.sum(axis=1).sum()
+
+# %% ../00_core.ipynb 10
+@patch
+def is_orthogonal(self: ExperimentalDesign) -> bool:
+    """Checks orthogonality of the model matrix"""
+    return self.calc_orthogonality() == 0
+    
